@@ -1,6 +1,7 @@
 import * as express from "express";
 import { Request, Response } from "express";
 import * as cors from "cors";
+// cool TypeORM library
 import { createConnection } from "typeorm";
 import { Product } from "./entity/product";
 import * as amqp from "amqplib/callback_api";
@@ -9,7 +10,9 @@ createConnection().then((db) => {
   const productRepository = db.getRepository(Product);
 
   //   green conect to the rabbitmq service
-  amqp.connect("rabbitmq_url", (error0, connection) => {
+  // blue from website cloudamqp
+
+  amqp.connect("amqps://mbmccbpr:iYTDyvmullpe2BFwzsbT7i1fbYZXLCvm@puffin.rmq2.cloudamqp.com/mbmccbpr", (error0, connection) => {
     if (error0) {
       throw error0;
     }
@@ -85,4 +88,4 @@ createConnection().then((db) => {
       });
     });
   });
-});
+})

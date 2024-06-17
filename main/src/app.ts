@@ -7,9 +7,11 @@ import {Product} from "./entity/product";
 import axios from 'axios';
 
 createConnection().then(db => {
+    
     const productRepository = db.getMongoRepository(Product)
-
-    amqp.connect('rabbitmq_url', (error0, connection) => {
+  //   green conect to the rabbitmq service
+  // blue from website cloudamqp
+    amqp.connect('amqps://mbmccbpr:iYTDyvmullpe2BFwzsbT7i1fbYZXLCvm@puffin.rmq2.cloudamqp.com/mbmccbpr', (error0, connection) => {
         if (error0) {
             throw error0
         }

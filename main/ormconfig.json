@@ -3,6 +3,8 @@
   "host": "localhost",
   "database": "node_main",
   "synchronize": true,
+  "username": "test",
+  "password": "test",
   "logging": false,
   "entities": [
     "src/entity/*.js"
