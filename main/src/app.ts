@@ -19,6 +19,7 @@ createConnection().then(db => {
                 throw error1
             }
 
+            // fire The queue will be non-durable the message will delete after restart the server you can chage the value to ture if you want to save the state after restart the server
             channel.assertQueue('product_created', {durable: false})
             channel.assertQueue('product_updated', {durable: false})
             channel.assertQueue('product_deleted', {durable: false})
@@ -60,11 +61,15 @@ createConnection().then(db => {
                 console.log('product deleted')
             })
 
+            // green get all products
             app.get('/api/products', async (req: Request, res: Response) => {
                 const products = await productRepository.find()
                 return res.send(products)
             })
 
+
+
+            // green post the like 
             app.post('/api/products/:id/like', async (req: Request, res: Response) => {
                 const product = await productRepository.findOne(req.params.id)
                 await axios.post(`http://localhost:8000/api/products/${product.admin_id}/like`, {})
